@@ -8,7 +8,7 @@ const customers = [
 ];
 
 const SendOffersPage = () => {
-  const [selectedCustomers, setSelectedCustomers] = useState<any[]>([]);
+  const [selectedCustomers, setSelectedCustomers] = useState<unknown[]>([]);
   const [message, setMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filteredCustomers, setFilteredCustomers] = useState(customers);

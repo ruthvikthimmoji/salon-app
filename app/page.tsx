@@ -47,11 +47,11 @@ export default function LandingPage() {
           <h2 className="text-3xl font-bold">What Our Clients Say</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <blockquote className="p-6 bg-white rounded-lg shadow-sm">
-              <p className="italic">"This tool helped us manage our salon like never before. Our revenue is up by 30%!"</p>
+              <p className="italic">`&quot;`This tool helped us manage our salon like never before. Our revenue is up by 30!`&quot;`</p>
               <footer className="mt-4 text-sm font-medium">– Priya, Salon Owner</footer>
             </blockquote>
             <blockquote className="p-6 bg-white rounded-lg shadow-sm">
-              <p className="italic">"I love how easy it is to use. Sending offers takes seconds now!"</p>
+              <p className="italic">`&quot;`I love how easy it is to use. Sending offers takes seconds now`&quot;`</p>
               <footer className="mt-4 text-sm font-medium">– Ramesh, Hair Stylist</footer>
             </blockquote>
           </div>
