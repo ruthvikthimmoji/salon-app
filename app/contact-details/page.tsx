@@ -117,7 +117,7 @@ export default function ContactDetailsPage() {
     setFilteredCustomers(filtered)
   }
 
-  const chooseCustomer = (customer: Customer) => {
+  const chooseCustomer = (customer: Customers) => {
     setFormData({
       name: customer.name,
       phone: customer.phone,
