@@ -49,7 +49,7 @@ export default function Dashboard() {
         return;
       }
   
-      setUserEmail(session.user.email);
+      setUserEmail(session.user.email?? '');
       setLoading(false);
       const owner_id = (await supabase.auth.getSession()).data.session?.user.id ;
   
@@ -72,14 +72,17 @@ export default function Dashboard() {
     await supabase.auth.signOut();
     router.push("/login");
   };
-
-  // Count services for charts
   const serviceCounts = customers.reduce((acc, customer) => {
-    const service = customer.services || "Unknown";  // Ensure services are joined into a string
-    acc[service] = (acc[service] || 0) + 1;
+    const serviceList = customer.services?.length ? customer.services : ["Unknown"];
+  
+    serviceList.forEach((service: string) => {
+      acc[service] = (acc[service] || 0) + 1;
+    });
+  
     return acc;
   }, {} as Record<string, number>);
-
+  
+  
   // Prepare data for charts
   const pieData = Object.entries(serviceCounts).map(([service, count]) => ({
     name: service,
