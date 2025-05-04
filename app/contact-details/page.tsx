@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { supabase } from '@/lib/supabase'
-import router, { useRouter } from 'next/router'
+import router from 'next/router'
 
 export default function ContactDetailsPage() {
   const [formData, setFormData] = useState({
