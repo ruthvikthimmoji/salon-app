@@ -1,4 +1,3 @@
-// This is a custom Table component located in your components/ui folder.
 import React from 'react';
 
 interface TableProps {
@@ -13,18 +12,35 @@ export const Table: React.FC<TableProps> = ({ children }) => {
   );
 };
 
-export const TableHead: React.FC = ({ children }) => (
+// Define the prop types for each of the table components
+interface TableHeadProps {
+  children: React.ReactNode;
+}
+
+export const TableHead: React.FC<TableHeadProps> = ({ children }) => (
   <thead className="bg-gray-100">{children}</thead>
 );
 
-export const TableRow: React.FC = ({ children }) => (
+interface TableRowProps {
+  children: React.ReactNode;
+}
+
+export const TableRow: React.FC<TableRowProps> = ({ children }) => (
   <tr className="border-b">{children}</tr>
 );
 
-export const TableCell: React.FC = ({ children }) => (
+interface TableCellProps {
+  children: React.ReactNode;
+}
+
+export const TableCell: React.FC<TableCellProps> = ({ children }) => (
   <td className="px-4 py-2">{children}</td>
 );
 
-export const TableHeaderCell: React.FC = ({ children }) => (
+interface TableHeaderCellProps {
+  children: React.ReactNode;
+}
+
+export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({ children }) => (
   <th className="px-4 py-2 text-left">{children}</th>
 );
