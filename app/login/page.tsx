@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
@@ -27,6 +28,12 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="p-6 bg-white rounded-lg shadow-md space-y-4 w-full max-w-sm">
         <h2 className="text-xl font-bold">{isLogin ? "Login" : "Sign Up"}</h2>
+        {/* <input
+          className="w-full p-2 border rounded"
+          placeholder="Name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        /> */}
         <input
           className="w-full p-2 border rounded"
           placeholder="Email"

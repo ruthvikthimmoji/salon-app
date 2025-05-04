@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 
 const customers = [
-  { id: 1, name: 'John Doe', phone: '123-456-7890', email: 'john.doe@example.com', lastVisited: '2025-03-01' },
-  { id: 2, name: 'Jane Smith', phone: '987-654-3210', email: 'jane.smith@example.com', lastVisited: '2025-02-20' },
-  { id: 3, name: 'Bob Brown', phone: '555-123-4567', email: 'bob.brown@example.com', lastVisited: '2025-04-05' },
+  { id: 1, name: 'John Doe', phone: '123-456-7890', email: 'john.doe@example.com', lastvisited: '2025-03-01' },
+  { id: 2, name: 'Jane Smith', phone: '987-654-3210', email: 'jane.smith@example.com', lastvisited: '2025-02-20' },
+  { id: 3, name: 'Bob Brown', phone: '555-123-4567', email: 'bob.brown@example.com', lastvisited: '2025-04-05' },
 ];
 
 const SendOffersPage = () => {
@@ -19,8 +19,8 @@ const SendOffersPage = () => {
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
     const filtered = customers.filter(customer => {
-      const lastVisitedDate = new Date(customer.lastVisited);
-      return lastVisitedDate < thirtyDaysAgo;
+      const lastvisitedDate = new Date(customer.lastvisited);
+      return lastvisitedDate < thirtyDaysAgo;
     });
 
     setFilteredCustomers(filtered);
