@@ -8,6 +8,18 @@ import { Label } from '@/components/ui/label'
 import { supabase } from '@/lib/supabase'
 import router from 'next/router'
 
+
+
+interface Customers {
+  id: string
+  name: string
+  phone: string
+  services: string
+  lastvisit?: string
+  email?: string
+  owner_id?: string
+}
+
 export default function ContactDetailsPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,8 +31,8 @@ export default function ContactDetailsPage() {
   })
 
   const [loading, setLoading] = useState(false)
-  const [customers, setCustomers] = useState<Customer[]>([])
-  const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([])
+  const [customers, setCustomers] = useState<Customers[]>([])
+  const [filteredCustomers, setFilteredCustomers] = useState<Customers[]>([])
   const [searchText, setSearchText] = useState('')
 
   useEffect(() => {
