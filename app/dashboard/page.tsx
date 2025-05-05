@@ -73,7 +73,9 @@ export default function Dashboard() {
     router.push("/login");
   };
   const serviceCounts = customers.reduce((acc, customer) => {
-    const serviceList = customer.services?.length ? customer.services : ["Unknown"];
+    const serviceList = Array.isArray(customer.services) && customer.services.length > 0
+      ? customer.services
+      : ["Unknown"];
   
     serviceList.forEach((service: string) => {
       acc[service] = (acc[service] || 0) + 1;
