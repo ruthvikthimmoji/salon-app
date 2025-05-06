@@ -12,7 +12,9 @@ type Customer = {
 };
 
 const SendOffersPage = () => {
-  const [customers, setCustomers] = useState<Customer[]>([]);
+  // Remove this line as it’s not used anywhere
+  // const [_customers, setCustomers] = useState<Customer[]>([]); 
+
   const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([]);
   const [selectedCustomers, setSelectedCustomers] = useState<number[]>([]);
   const [message, setMessage] = useState('');
@@ -26,8 +28,7 @@ const SendOffersPage = () => {
       if (error) {
         console.error('Error fetching customers:', error);
       } else if (data) {
-        setCustomers(data);
-
+        // Directly set filteredCustomers here after filtering the data
         const twoDaysAgo = new Date();
         twoDaysAgo.setDate(twoDaysAgo.getDate() - 30);
 
@@ -36,7 +37,7 @@ const SendOffersPage = () => {
           return lastvisitedDate < twoDaysAgo;
         });
 
-        setFilteredCustomers(filtered);
+        setFilteredCustomers(filtered); // Set filteredCustomers directly
       }
     };
 
