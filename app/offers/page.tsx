@@ -1,29 +1,46 @@
-'use client'
+'use client';
+
+import { supabase } from '@/lib/supabase';
 import React, { useState, useEffect } from 'react';
 
-const customers = [
-  { id: 1, name: 'John Doe', phone: '123-456-7890', email: 'john.doe@example.com', lastvisited: '2025-03-01' },
-  { id: 2, name: 'Jane Smith', phone: '987-654-3210', email: 'jane.smith@example.com', lastvisited: '2025-02-20' },
-  { id: 3, name: 'Bob Brown', phone: '555-123-4567', email: 'bob.brown@example.com', lastvisited: '2025-04-05' },
-];
+type Customer = {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  lastvisited: string;
+};
 
 const SendOffersPage = () => {
-  const [selectedCustomers, setSelectedCustomers] = useState<unknown[]>([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [filteredCustomers, setFilteredCustomers] = useState<Customer[]>([]);
+  const [selectedCustomers, setSelectedCustomers] = useState<number[]>([]);
   const [message, setMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filteredCustomers, setFilteredCustomers] = useState(customers);
 
-  // Filter customers who visited more than 30 days ago
+  // Fetch customers from Supabase
   useEffect(() => {
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const fetchCustomers = async () => {
+      const { data, error } = await supabase.from('customers').select('*');
 
-    const filtered = customers.filter(customer => {
-      const lastvisitedDate = new Date(customer.lastvisited);
-      return lastvisitedDate < thirtyDaysAgo;
-    });
+      if (error) {
+        console.error('Error fetching customers:', error);
+      } else if (data) {
+        setCustomers(data);
 
-    setFilteredCustomers(filtered);
+        const twoDaysAgo = new Date();
+        twoDaysAgo.setDate(twoDaysAgo.getDate() - 30);
+
+        const filtered = data.filter((customer: Customer) => {
+          const lastvisitedDate = new Date(customer.lastvisited);
+          return lastvisitedDate < twoDaysAgo;
+        });
+
+        setFilteredCustomers(filtered);
+      }
+    };
+
+    fetchCustomers();
   }, []);
 
   const handleSelectCustomer = (customerId: number) => {
@@ -35,15 +52,14 @@ const SendOffersPage = () => {
   };
 
   const handleSendMessage = () => {
-    // Placeholder for actual SMS/Email integration (Twilio or Resend)
     console.log('Sending message:', message, 'to customers:', selectedCustomers);
+    // TODO: Replace with actual API call to Twilio, Resend, etc.
   };
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-4">Send Offers to Customers</h1>
 
-      {/* Filtered Customer List with Checkboxes */}
       <div className="mb-4">
         <h2 className="text-xl mb-2">Select Customers</h2>
         {filteredCustomers.length > 0 ? (
@@ -66,7 +82,6 @@ const SendOffersPage = () => {
         )}
       </div>
 
-      {/* Custom Message Form */}
       <div className="mb-4">
         <h2 className="text-xl mb-2">Custom Message</h2>
         <textarea
@@ -77,7 +92,6 @@ const SendOffersPage = () => {
         />
       </div>
 
-      {/* Send Button */}
       <button
         onClick={() => setIsModalOpen(true)}
         className="bg-blue-500 text-white p-2 rounded-md"
@@ -86,7 +100,6 @@ const SendOffersPage = () => {
         Preview and Send
       </button>
 
-      {/* Modal for Preview and Confirmation */}
       {isModalOpen && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-1/3">
@@ -115,4 +128,3 @@ const SendOffersPage = () => {
 };
 
 export default SendOffersPage;
-

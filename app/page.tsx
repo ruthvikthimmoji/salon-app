@@ -24,17 +24,17 @@ export default function LandingPage() {
       <section className="bg-white py-16 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center">
           <div>
-            <Image src="/icons/user.svg" alt="Customers" width={48} height={48} className="mx-auto mb-4" />
+            <Image src="/CRM.jpg" alt="Customers" width={150} height={150} className="mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Customer Management</h3>
             <p>Keep track of all customer visits, services, and preferences.</p>
           </div>
           <div>
-            <Image src="/icons/offer.svg" alt="Offers" width={48} height={48} className="mx-auto mb-4" />
+            <Image src="/offers.jpg" alt="Offers" width={150} height={150} className="mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Personalized Offers</h3>
             <p>Send smart, personalized offers to increase retention.</p>
           </div>
           <div>
-            <Image src="/icons/chart.svg" alt="Analytics" width={48} height={48} className="mx-auto mb-4" />
+            <Image src="/BA.jpg" alt="Analytics" width={150} height={150} className="mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Business Insights</h3>
             <p>Track your growth and service performance with real-time analytics.</p>
           </div>

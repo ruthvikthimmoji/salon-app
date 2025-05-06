@@ -181,6 +181,7 @@ export default function Dashboard() {
               <th className="py-3 px-4">Phone</th>
               <th className="py-3 px-4">Services</th>
               <th className="py-3 px-4">Last Visit</th>
+              <th className="py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -191,6 +192,13 @@ export default function Dashboard() {
                   <td className="py-3 px-4">{customer.phone}</td>
                   <td className="py-3 px-4">{customer.services}</td>
                   <td className="py-3 px-4">{customer.lastvisit || "N/A"}</td>
+                  <td>
+                    <Link href='/offers'>
+                    <button className="text-red-500">
+                      send offers
+                    </button>
+                    </Link>
+                  </td>
                 </tr>
               ))
             ) : (
